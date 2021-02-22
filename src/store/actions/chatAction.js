@@ -116,15 +116,10 @@ export const uploadImage = (blob,metadata,userRef,user) => async (dispatch) => {
 
 const userAvatarUpdated = (userRef,image)  => {
     firebase.database().ref('users').child(`${userRef.uid}`).update({ avatar: image})
-    .then(console.log("suka"))
 }
 
 const changeAvatar = (downloadURL)  => {
     firebase.auth().currentUser.updateProfile({
             photoURL: downloadURL
-        })
-        .then(console.log("wow"))
-        
-       
-  
+        })      
 }
