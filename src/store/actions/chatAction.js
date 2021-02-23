@@ -65,12 +65,12 @@ export const fetchChannel = () => async dispatch => {
   };
 
   export const addChannel = (key,newChannel) => async  (dispatch ) => {
-    dispatch({ type: actionTypes.SEND_MESSAGE});
+    dispatch({ type: actionTypes.ADD_CHANNEL});
     try {
         await firebase.database().ref('channels').child(key)
         .update(newChannel)   
     } catch(err){
-        dispatch({ type: actionTypes.SEND_MESSAGE_FAIL});
+        dispatch({ type: actionTypes.ADD_CHANNEL_FAILED});
     }
 }
 
@@ -90,7 +90,7 @@ export const starChannel = (user,channel) => async (dispatch) => {
         })  
     }
     catch(err){
-        dispatch({type: actionTypes.SEND_MESSAGE_FAIL})
+        dispatch({type: actionTypes.STARRED_CHANNEL_FAILED})
     }
 }
 
@@ -108,7 +108,7 @@ export const uploadImage = (blob,metadata,userRef,user) => async (dispatch) => {
            
         }
         catch(err){
-            dispatch({type: actionTypes.SEND_MESSAGE_FAIL})
+            dispatch({type: actionTypes.UPLOAD_IMAGE_ERROR})
         }
 
 }
@@ -121,5 +121,5 @@ const userAvatarUpdated = (userRef,image)  => {
 const changeAvatar = (downloadURL)  => {
     firebase.auth().currentUser.updateProfile({
             photoURL: downloadURL
-        })      
+        })
 }
