@@ -9,7 +9,6 @@ import * as actions from '../../store/actions/index';
 
 import MessagesHeader from './MessagesHeader';
 import Message from './Message';
-import Message2 from './Message2';
 import MessageForm from './MessageForm';
 import Typing from './Typing';
 import Skeleton from './Skeleton';
@@ -209,7 +208,7 @@ class Messages extends React.Component{
         this.setState({ numUniqueUsers});
     }
 
-    displayMessages = (messages) =>(
+    displaySearchMessages = (messages) =>(
         
         messages.length > 0 && messages.map(message => (
             <Message 
@@ -220,7 +219,7 @@ class Messages extends React.Component{
         ))
     )
 
-    displayMessages2 (searchMessage) {
+    displayMessages (searchMessage) {
         
         const { data } = this.props;
         const message = _.map(data, (value, key) => {
@@ -296,7 +295,7 @@ class Messages extends React.Component{
             <Segment>
                 <Comment.Group className={progressBar ? 'messages__progress' : 'messages'}>
                     {this.displayMessageSkeleton(this.props.isLoading)}
-                    {searchTerm ? this.displayMessages(searchResults) : this.displayMessages2()}
+                    {searchTerm ? this.displaySearchMessages(searchResults) : this.displayMessages()}
                     {this.displayTypingUsers(typingUsers)} <div ref={node => (this.messagesEnd = node)}></div>
                 </Comment.Group>
             </Segment>
