@@ -16,7 +16,7 @@ import Skeleton from './Skeleton';
 class Messages extends React.Component{
     state = {
         privateChannel: this.props.isPrivateChannel,
-        privateMessagesRef: firebase.database().ref('privateMessages'),
+        privateMessagesRef: firebase.database().ref('messages'),
         messagesRef: firebase.database().ref('messages'),
         messages: [],
         channel: this.props.currentChannel,
